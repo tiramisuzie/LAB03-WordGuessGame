@@ -8,15 +8,19 @@ namespace LAB03_WordGuessGame
     {
         char [] originalGuessWord;
         char [] userGuessWord;
+        string userInputHistory = "";
 
-        public Game(string word)
+        public void Reset()
         {
+            WordBank wordBank = new WordBank();
+            string word = wordBank.GenerateWord();
             originalGuessWord = word.ToCharArray();
             userGuessWord = new char[originalGuessWord.Length];
-            for(int i = 0; i < originalGuessWord.Length; i++)
+            for (int i = 0; i < originalGuessWord.Length; i++)
             {
                 userGuessWord[i] = '_';
             }
+            userInputHistory = "";
         }
 
         public void Play()

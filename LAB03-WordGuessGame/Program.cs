@@ -8,11 +8,13 @@ namespace LAB03_WordGuessGame
         {
             
             bool continueGame = true;
-            while(continueGame)
+
+            Game game = new Game();
+            
+            while (continueGame)
             {
-                WordBank wordBank = new WordBank();
-                Console.WriteLine();
-                Game game = new Game(wordBank.GenerateWord());
+
+                game.Reset();
                 game.Play();
                 Console.WriteLine("press 2 to exit, press any key to continue");
                 if (Console.ReadLine() == "2" )
