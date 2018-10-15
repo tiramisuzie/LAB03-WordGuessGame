@@ -1,0 +1,8 @@
+﻿hi
+hello
+world
+people
+computer
+guess
+towel
+bathroom

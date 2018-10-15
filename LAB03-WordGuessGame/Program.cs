@@ -6,7 +6,8 @@ namespace LAB03_WordGuessGame
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            WordBank wordBank = new WordBank();
+            
         }
     }
 }
