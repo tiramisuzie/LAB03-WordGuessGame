@@ -6,16 +6,16 @@ namespace LAB03_WordGuessGame
 {
     class Game
     {
-        char [] guessWord;
-        char[] userGuessLetter;
+        char [] originalGuessWord;
+        char[] userGuessWord;
 
         public Game(string word)
         {
-            guessWord = word.ToCharArray();
-            userGuessLetter = new char[guessWord.Length];
-            for(int i = 0; i < guessWord.Length; i++)
+            originalGuessWord = word.ToCharArray();
+            userGuessWord = new char[originalGuessWord.Length];
+            for(int i = 0; i < originalGuessWord.Length; i++)
             {
-                userGuessLetter[i] = '_';
+                userGuessWord[i] = '_';
             }
         }
 
@@ -24,15 +24,35 @@ namespace LAB03_WordGuessGame
             while (!CheckWinner())
             {
                 Console.WriteLine("Please guess The word");
-                for (int i = 0; i < userGuessLetter.Length; i++ )
+                for (int i = 0; i < userGuessWord.Length; i++ )
                 {
-                    Console.Write(userGuessLetter[i] + " ");
+                    Console.Write(userGuessWord[i] + " ");
                 }
                 Console.WriteLine();
-                Console.ReadLine();
+                try
+                {
+                    char guessLetter = Convert.ToChar(Console.ReadLine());
+                    if (Char.IsLetter(guessLetter))
+                    {
+                        CompareLetter(guessLetter);
+                    }
+                } catch (Exception e)
+                {
+                    Console.WriteLine("invalue input");
+                }
             }
         }
 
+        public void CompareLetter(char l)
+        {
+            for(int i = 0; i < originalGuessWord.Length; i++)
+            {
+                if ( originalGuessWord[i] == l)
+                {
+                    userGuessWord[i] = l;
+                }
+            }
+        }
         public bool CheckWinner()
         {
             return false;
