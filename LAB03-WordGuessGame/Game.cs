@@ -41,6 +41,13 @@ namespace LAB03_WordGuessGame
                     Console.WriteLine("invalue input");
                 }
             }
+
+            Console.WriteLine("You figure out the word");
+            for (int i = 0; i < userGuessWord.Length; i++)
+            {
+                Console.Write(userGuessWord[i] + " ");
+            }
+            Console.WriteLine();
         }
 
         public void CompareLetter(char l)
