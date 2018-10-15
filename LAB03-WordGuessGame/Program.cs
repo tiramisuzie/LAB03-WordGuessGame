@@ -7,6 +7,7 @@ namespace LAB03_WordGuessGame
         static void Main(string[] args)
         {
             WordBank wordBank = new WordBank();
+            Console.WriteLine(wordBank.GenerateWord());
             
         }
     }

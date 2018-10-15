@@ -32,5 +32,11 @@ namespace LAB03_WordGuessGame
             file.Close();
 
         }
+
+        public string GenerateWord()
+        {
+            Random rng = new Random();
+            return words[ rng.Next(0, words.Length - 1) ];
+        }
     }
 }
