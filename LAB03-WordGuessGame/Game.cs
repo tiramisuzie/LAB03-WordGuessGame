@@ -31,7 +31,7 @@ namespace LAB03_WordGuessGame
                 Console.WriteLine();
                 try
                 {
-                    char guessLetter = Convert.ToChar(Console.ReadLine());
+                    char guessLetter = Convert.ToChar(Console.ReadLine().ToLower());
                     if (Char.IsLetter(guessLetter))
                     {
                         CompareLetter(guessLetter);
