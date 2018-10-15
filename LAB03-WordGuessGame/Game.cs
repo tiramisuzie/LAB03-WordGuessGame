@@ -39,11 +39,14 @@ namespace LAB03_WordGuessGame
                     if (Char.IsLetter(guessLetter))
                     {
                         CompareLetter(guessLetter);
+                        userInputHistory += guessLetter;
                     }
                 } catch (Exception e)
                 {
                     Console.WriteLine("invalue input");
                 }
+                Console.WriteLine("Input History");
+                DisplayUserInputHistory();
             }
 
             Console.WriteLine("You figure out the word");
@@ -67,6 +70,15 @@ namespace LAB03_WordGuessGame
         public bool CheckWinner()
         {
             return !new String(userGuessWord).Contains('_');
+        }
+
+        public void DisplayUserInputHistory()
+        {
+            for (int i = 0; i < userInputHistory.Length; i++)
+            {
+                Console.Write(userInputHistory[i] + " ");
+            }
+            Console.WriteLine();
         }
     }
 }
