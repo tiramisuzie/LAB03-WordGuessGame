@@ -7,7 +7,7 @@ namespace LAB03_WordGuessGame
     class Game
     {
         char [] originalGuessWord;
-        char[] userGuessWord;
+        char [] userGuessWord;
 
         public Game(string word)
         {
@@ -55,7 +55,7 @@ namespace LAB03_WordGuessGame
         }
         public bool CheckWinner()
         {
-            return false;
+            return !new String(userGuessWord).Contains('_');
         }
     }
 }
