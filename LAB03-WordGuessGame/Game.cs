@@ -4,15 +4,23 @@ using System.Text;
 
 namespace LAB03_WordGuessGame
 {
-    class Game
+    public class Game
     {
         char [] originalGuessWord;
         char [] userGuessWord;
-        string userInputHistory = "";
+        
+        WordBank wordBank;
+        PlayerGuessHistory playerGuessHistory;
+
+        public Game()
+        {
+            wordBank = new WordBank();
+            playerGuessHistory = new PlayerGuessHistory();
+            Reset();
+        }
 
         public void Reset()
         {
-            WordBank wordBank = new WordBank();
             string word = wordBank.GenerateWord();
             originalGuessWord = word.ToCharArray();
             userGuessWord = new char[originalGuessWord.Length];
@@ -20,7 +28,7 @@ namespace LAB03_WordGuessGame
             {
                 userGuessWord[i] = '_';
             }
-            userInputHistory = "";
+            playerGuessHistory.Reset();
         }
 
         public void Play()
@@ -28,28 +36,43 @@ namespace LAB03_WordGuessGame
             while (!CheckWinner())
             {
                 Console.WriteLine("Please guess The word");
-                for (int i = 0; i < userGuessWord.Length; i++ )
-                {
-                    Console.Write(userGuessWord[i] + " ");
-                }
-                Console.WriteLine();
+                DisplayMysteryWord();
                 try
                 {
-                    char guessLetter = Convert.ToChar(Console.ReadLine().ToLower());
+                    char guessLetter = Convert.ToChar(Console.ReadLine());
                     if (Char.IsLetter(guessLetter))
                     {
-                        CompareLetter(guessLetter);
-                        userInputHistory += guessLetter;
+                        CompareLetter(guessLetter, originalGuessWord);
+                        playerGuessHistory.AddWord(guessLetter);
                     }
-                } catch (Exception e)
+                } catch (Exception)
                 {
                     Console.WriteLine("invalue input");
                 }
                 Console.WriteLine("Input History");
-                DisplayUserInputHistory();
+                playerGuessHistory.DisplayUserInputHistory();
             }
 
             Console.WriteLine("You figure out the word");
+            DisplayMysteryWord();
+        }
+
+        public bool CompareLetter(char l, char[] guessWord)
+        {
+            bool correct = false;
+            for(int i = 0; i < guessWord.Length; i++)
+            {
+                if (guessWord[i].ToString().Equals(l.ToString(), StringComparison.CurrentCultureIgnoreCase))
+                {
+                    userGuessWord[i] = guessWord[i];
+                    correct = true;
+                }
+            }
+            return correct;
+        }
+
+        public void DisplayMysteryWord()
+        {
             for (int i = 0; i < userGuessWord.Length; i++)
             {
                 Console.Write(userGuessWord[i] + " ");
@@ -57,28 +80,9 @@ namespace LAB03_WordGuessGame
             Console.WriteLine();
         }
 
-        public void CompareLetter(char l)
-        {
-            for(int i = 0; i < originalGuessWord.Length; i++)
-            {
-                if ( originalGuessWord[i] == l)
-                {
-                    userGuessWord[i] = l;
-                }
-            }
-        }
         public bool CheckWinner()
         {
             return !new String(userGuessWord).Contains('_');
-        }
-
-        public void DisplayUserInputHistory()
-        {
-            for (int i = 0; i < userInputHistory.Length; i++)
-            {
-                Console.Write(userInputHistory[i] + " ");
-            }
-            Console.WriteLine();
         }
     }
 }

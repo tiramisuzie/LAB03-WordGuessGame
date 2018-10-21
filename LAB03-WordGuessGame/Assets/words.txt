@@ -1,8 +1,4 @@
-﻿hi
-hello
-world
-people
-computer
-guess
-towel
-bathroom
+Gumiho
+furry
+nose
+paw
