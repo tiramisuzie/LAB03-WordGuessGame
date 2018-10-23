@@ -7,7 +7,7 @@ Each time a new game session starts, the mystery word chosen should come from an
 
 Users may play a word guessing game similar to hangman. 
 ## Sample View
-![guessing game](/assets/screenshot1.PNG)
+![guessing game](/assets/screenshot3.PNG)
 ## Load Application
 in terminal: git clone open in visual studio run project without debugging
 ## License
